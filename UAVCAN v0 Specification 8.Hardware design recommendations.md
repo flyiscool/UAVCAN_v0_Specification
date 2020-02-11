@@ -1,4 +1,4 @@
-## UAVCAN Specification 8.Hardware design recommendations
+## UAVCAN v0 Specification 8.Hardware design recommendations
 
 ### Contents
 #### Hardware design recommendations

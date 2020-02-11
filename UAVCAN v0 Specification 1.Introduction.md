@@ -1,13 +1,15 @@
-## UAVCAN Specification 1.Introduction
+## UAVCAN v0 Specification 1.Introduction
 
+------------
 ## Contents
-- Introduction
+### Introduction
  - Core design goals
  - Specification update and approval process
  - Referenced sources
+------------------------
 
 ## Introduction（ 简介）
-This section covers the basic concepts that govern development and maintenance of the specification. 
+This section covers the basic concepts that govern development and maintenance of the specification.
 本节介绍了在开发和维护中规范说明的一些基本概念。
 
 The actual specification is contained in the following sections.
