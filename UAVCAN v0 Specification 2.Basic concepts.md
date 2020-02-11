@@ -1,24 +1,27 @@
-## UAVCAN Specification 2.Basic concepts
+## UAVCAN v0 Specification 2.Basic concepts
 
 ## Contents
-- Basic concepts
-	- Message broadcasting
-		- Anonymous message broadcasting
-    - Service invocation
+### Basic concepts
+ - Message broadcasting
+ 	- Anonymous message broadcasting
+ - Service invocation
 
 ## Basic concepts（ 基本概念）
 
 UAVCAN is a lightweight protocol designed to provide a highly reliable communication method for aerospace and robotic applications via the CAN bus. The UAVCAN network is a decentralized peer network, where each peer (node) has a unique numeric identifier - node ID. The nodes of the UAVCAN network can communicate using any of the following communication methods:
+
 UAVCAN 是一种轻量级协议，旨在通过 CAN 总线为航空航天和机器人应用提供一种高度可靠的通信方法。UAVCAN 网络是一个分布式对等网络，每个对等点(节点)都有一个唯一的数字标识符——节点 ID。UAVCAN 网络的节点可以使用以下任何一种通信方法进行通信:
 
  - Message broadcasting - The primary method of data exchange with publish/subscribe semantics.
  - 消息广播 —— 主要的进行数据交换的方式，通过使用发布/订阅语义进行。
 <br/>
+
  - Service invocation - The communication method for peer-to-peer request/response interactions.
  - 服务调用 —— 对等的请求/响应交互的通信方法。
 
+<br/>
 <div align=center>![Alt text](./picture/1581166462050.png)
-
+<br/>
 
 For each type of communication, a predefined set of data structures is used, where each data structure has a unique identifier - the data type ID (DTID). Some data structures are standard and defined by the protocol specification; others may be specific to a particular application or vendor.
 对于每种通信类型，都使用一组预定义的数据结构，其中每个数据结构都有一个惟一的标识符——数据类型 ID (DTID)。其中一部分数据结构是标准的，由协议规范定义；其他的则针对特定的应用程序或供应商。
