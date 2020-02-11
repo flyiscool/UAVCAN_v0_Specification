@@ -19,9 +19,8 @@ UAVCAN 是一种轻量级协议，旨在通过 CAN 总线为航空航天和机�
  - Service invocation - The communication method for peer-to-peer request/response interactions.
  - 服务调用 —— 对等的请求/响应交互的通信方法。
 
-<br/>
-<div align=center>![Alt text](./picture/1581166462050.png)
-<br/>
+![Alt text](./picture/1581166462050.png)
+
 
 For each type of communication, a predefined set of data structures is used, where each data structure has a unique identifier - the data type ID (DTID). Some data structures are standard and defined by the protocol specification; others may be specific to a particular application or vendor.
 对于每种通信类型，都使用一组预定义的数据结构，其中每个数据结构都有一个惟一的标识符——数据类型 ID (DTID)。其中一部分数据结构是标准的，由协议规范定义；其他的则针对特定的应用程序或供应商。
@@ -67,7 +66,8 @@ Service invocation is a two-step data exchange between exactly two nodes: a clie
 
  - 1.The client sends a service request to the server.
  - 1.客户端向服务器发送一个服务请求。
- <br/>
+ <br>
+ 
  - 2.The server takes appropriate actions and sends a response to the client.
  - 2.服务器采取适当的操作并向客户端发送响应。
  
@@ -92,4 +92,5 @@ Both service requests and service responses include the following data:
 | 传输 ID | 一个小的溢出整数，它随着从给定节点每次传输这种类型的消息而递增 |
 
 Both request and response contain exactly the same values for all fields except payload, where the content is application defined. Clients can match the response with a corresponding request using the following fields: data type ID, client node ID, server node ID, and transfer ID.
+
 对于所有字段（有效负载除外，其中的内容是应用程序定义的），请求传输和响应传输都包含完全相同的值。客户端可以使用以下字段将响应与相应的请求进行匹配：数据类型 ID、客户端节点 ID、服务器节点 ID 和传输 ID。
