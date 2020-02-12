@@ -63,22 +63,31 @@ Notes:
 备注：
  - It is not necessary to explicitly define a default data type ID for non-standard data types (i.e., for vendor-specific or application-specific data types).  
  - 没必要为非标准数据类型明确定义一个默认数据类型 ID （比如，适用于特定于供应商或特定于应用程序的数据类型）。  
+  <br> <br/>
 	- If the default data type ID is not defined by the DSDL definition, it will need to be assigned by the application at run time.  
 	- 如果 DSDL 没有定义默认数据类型ID，则需要在运行时由应用程序分配它。
+	 <br> <br/>
 	- All standard data types have default data type ID values defined.  
 	- 所有标准数据类型都定义了默认数据类型ID值。  
+	 <br> <br/>
  - Data type names are case sensitive, i.e., names foo.Bar and foo.bar are considered different. Names that differ only in case should be avoided, because it may cause problems on file systems that are not case-sensitive.  
  - 数据类型名称区分大小写，比如 foo.Bar 和 foo.bar 被认为是不同的。应该避免仅在大小写情况下不同的名称，因为它可能会在不区分大小写的文件系统上造成问题。
+  <br> <br/>
  - Data types may contain nested data structures.  
  - 数据类型可能包含嵌套的数据结构。
+  <br> <br/>
  	- Some data structures may be designed for such nesting only, in which case they are not required to have a dedicated data type ID.  
 	- 有些数据结构可能只设计用于这种嵌套，在这种情况下，它们不需要专用的数据类型ID。  
+	 <br> <br/>
  - Full data type name is a unique identifier of a data type constructed from the root namespace, all nested namespaces (if any), and the data type name itself, joined via the dot symbol (.), e.g., uavcan.protocol.file.Read.  
  - 完整数据类型名称是数据类型的唯一标识符，该数据类型由根命名空间、所有嵌套命名空间（如果有的话）和数据类型名称本身构成，通过点符号（.）连接，例如，uavcan.protocol.file.Read。  
+  <br> <br/>
 	 - The length of the Full data type name must not exceed 80 characters.  
 	 - 完整数据类型名称的长度不能超过80个字符。  
+	  <br> <br/>
 	 - Refer to the naming rules below for the limitations imposed on the character set.  
-	 - 有关字符集的限制，请参阅下面的命名规则。  
+	 - 有关字符集的限制，请参阅下面的命名规则。
+	  <br> <br/>
 	 
 #### Service data structure (服务数据结构)
 Since a service invocation consists of two network exchange operations, the DSDL definition for a service must define two structures:  
@@ -86,7 +95,7 @@ Since a service invocation consists of two network exchange operations, the DSDL
 
  - Request part - for request transfer (client to server).  
  - 请求部分 —— 用于请求传输(客户端到服务器)。
- <br/>
+ <br> <br/>
  - Response part - for response transfer (server to client).  
  - 响应部分 —— 用于响应传输(服务器到客户端)。
 
@@ -109,7 +118,7 @@ An attribute can be either of the following:
 
  - Field - a variable that can be modified by the application and exchanged via the network.  
  - 字段 —— 可以由应用程序修改并通过网络交换的变量。
- <br/>
+  <br> <br/>
  - Constant - an immutable value that does not participate in network exchange.   
  - 常量 —— 不参与网络交换的固定值。
 
@@ -121,7 +130,7 @@ Aside from attributes and directives, a DSDL definition may contain the followin
 
 - Comments  
 - 注释
-<br/>
+  <br> <br/>
 - Service response marker  
 - 服务响应标志
 
@@ -133,10 +142,10 @@ DSDL定义的消息数据类型只能包含以下内容:
 
  - Attribute definitions (zero or more)  
  - 属性定义（0个或更多）
- <br/>
+  <br> <br/>
  - Directives (zero or more)  
  - 指令（0个或更多）
- <br/>
+  <br> <br/>
  - Comments (optional)  
  - 注释（可选）
 
@@ -145,16 +154,16 @@ DSDL定义的服务数据类型只能包含以下内容:
 
  - Request part attribute definitions (zero or more)  
 -请求阶段的属性定义（0个或更多）
-<br/>
+  <br> <br/>
  - Response part attribute definitions (zero or more)  
  - 响应阶段的属性定义（0个或更多）
-<br/>
+  <br> <br/>
  - Directives (zero or more)  
  - 指令（0个或更多）
- <br/>
+  <br> <br/>
  - Comments (optional)  
  - 注释（可选）
- <br/>
+  <br> <br/>
  - Service response marker (exactly one)  
  - 服务响应标记（只有一个）
 
@@ -197,10 +206,10 @@ A field type name can be appended with a statement in square brackets to define 
 
  - Syntax [X] is used to define a static array of size exactly X items.  
  - 语法 [X] 用于定义大小正好为 X 的静态数组。
-<br/>
+  <br> <br/>
  - Syntax [<X] is used to define a dynamic array of size from 0 to X-1 items, inclusively.  
  - 语法 [<X] 用于定义一个从 0 到 X-1 项的动态数组。
-<br/>
+  <br> <br/>
  - Syntax [<=X] is used to define a dynamic array of size from 0 to X items, inclusively.  
  - 语法 [<=X] 用于定义一个从 0 到 X 项大小的动态数组。
 
@@ -224,7 +233,7 @@ Cast mode defines the rules of conversion from the native value of a certain pro
 - __saturated__ - This is the default cast mode, which will be used if the attribute definition does not specify the cast mode explicitly. For integers, it prevents an integer overflow - for example, attempting to write 0x44 to a 4-bit field will result in a bitfield value of 0x0F. For floating point values, it prevents overflow when casting to a lower precision floating point representation - for example, 65536.0 will be converted to a float16 as 65504.0; infinity will be preserved.  
 - __饱和处理__ —— 这是默认的转换模式，如果属性定义没有显式地指定转换模式，就会使用这种模式。对于整数，它可以防止整数溢出——例如，尝试将0x44写入4bit的字段将得到0x0F的位字段值。对于浮点值，它可以防止在将其转换为精度较低的浮点表示形式时发生溢出 —— 例如，将65536.0转换为 float16 (如65504.0) ; 不会产生无穷大。  
 
-<br/>
+  <br> <br/>
 - __truncated__ - For integers, it discards the excess most significant bits - for example, attempting to write 0x44 to a 4-bit field will produce 0x04. For floating point values, overflow during downcasting will produce an infinity.  
 - __截断__ —— 对于整数它有可能丢弃重要的符号位，如将 0x44 写入 4bit的字段会得到0x04。对于浮点数，转换时有可能得到正无穷。  
 
@@ -237,25 +246,25 @@ A constant must be assigned with a constant initializer, which must be one of th
 
  - Integer zero (0).  
  - 整数零（0）。
- <br/>
+  <br> <br/>
  - Integer literal in base 10, starting with a non-zero character. E.g., 123, -12.  
  - 十进制整数，非零字符开头。如：123，-12。
- <br/>
+  <br> <br/>
  - Integer literal in base 16 prefixed with 0x. E.g., 0x123, -0x12, +0x123.  
  - 十六进制整数，以0x开头，如：0x123，-0x12，+0x123等。
- <br/>
+  <br> <br/>
  - Integer literal in base 2 prefixed with 0b. E.g., 0b1101, -0b101101, +0b101101.  
  - 二进制整数，以0b开头。如：0b1101，-0b101101，+0b101101。
- <br/>
+  <br> <br/>
  - Integer literal in base 8 prefixed with 0o. E.g., 0o123, -0o777, +0o777.  
  - 八进制整数，以0o开头，比如：0o123，-0o777，+0o777。
- <br/>
+  <br> <br/>
  - Floating point literal. Fractional part with an optional exponent part, e.g., 15.75, 1.575E1, 1575e-2, -2.5e-3, +25E-4. Not-a-number (NaN), positive infinity, and negative infinity are intentionally not supported in order to maximize cross-platform compatibility.  
  - 浮点数。指数部分可选的小数部分，为了跨平台不兼容支持NAN、正无穷和负无穷。
- <br/>
+  <br> <br/>
  - Boolean true or false.  
  - 布尔类型。true或者false。
- <br/>
+  <br> <br/>
  - Single ASCII character, ASCII escape sequence, or ASCII hex literal in single quotes. E.g., 'a', '\x61', '\n'.  
  - 单ASCII字符、ASCII转义序列或单引号中的ASCII十六进制文字。例如，'a'， '\x61'， '\n'。
 
@@ -340,10 +349,10 @@ The following rules are recommended only (DSDL compilers are not required to enf
 
  - Field and namespace names should be all-lowercase words separated with underscores, and may include numbers, (e.g.: field_name, my_namespace_7).  
  - 字段和命名空间的名称应该是全小写的单词，用下划线分隔，可以包括数字（例如：field_name, my_namespace_7）。
-<br/>
+  <br> <br/>
  - Constant names should be all-uppercase words separated with underscores, and may include numbers (e.g.: CONSTANT_NAME).  
  - 常量名称应该是全大写的单词，用下划线分隔，可以包括数字（例如：CONSTANT_NAME）。
-<br/>
+  <br> <br/>
 
  - Data type names should be in camel case (first letter of all words in uppercase) and may include numbers (e.g.: TypeName, TypeName2).  
  - 数据类型名称应该是驼峰式的（所有单词的首字母是大写的），并且可以包含数字（例如：TypeName, TypeName2）。
@@ -468,35 +477,35 @@ To obtain a normalized definition of a given data type, the following actions mu
 
  - Remove comments.  
  - 删除注释。 
-  <br/>
+  <br> <br/>
   
  - Remove all constant definitions.  
  - 删除所有的常量定义。
-  <br/>
+  <br> <br/>
  
  - Ensure that all cast specifiers are explicitly defined; if not, add default cast specifiers.  
  - 确保所有的强制类型转换被明确定义；如果没有，添加默认的的强制类型转换说明符。
-   <br/>
+  <br> <br/>
    
  - For dynamic arrays, replace the max length specifier in the form [<X] to the form [<=Y].  
  - 对于动态数组，将表单中的最大长度说明符从[<X]替换为[<=Y]。
-   <br/>
+  <br> <br/>
    
  - For nested data structures, replace all short names with full names.  
  - 对于嵌套数据结构，将所有短名称替换为全名称。
-   <br/>
+  <br> <br/>
    
  - Remove unimportant whitespace (empty lines, leading whitespace, trailing whitespace, more than  one whitespace between tokens).  
  - 删除不重要的空白（空行、前导空白、后置空白、标记之间的多个空白）。
-   <br/>
+  <br> <br/>
    
  - Prepend the DSDL definition with the full data type name on a separate line.  
  - 预先将 DSDL 定义用完整的数据类型名称放在独丽的一行中。
-   <br/>
+  <br> <br/>
    
  - Replace newline characters with the ASCII line-feed character (code: 0x0A; escape sequence: \n).  
  - 换行符使用ASCII换行字符（代码：0x0A；转义序列：\n）。
-   <br/>
+  <br> <br/>
 
 Example for message type A in the namespace root:  
 举个例子，根命名空间中的消息类型 A ：
@@ -622,13 +631,13 @@ The algorithm that computes the aggregate signature for the set of data types A 
 
 - Sort A by full data type name lexicographically in descending order (encoding is ASCII, order is A to Z).  
 - 把完整数据类型名称按字典降序排序（编码为ASCII，顺序为A到Z）。
-<br/>
+  <br> <br/>
 - Initialize the hash value with the data type signature of the first data type from A.  
 - 使用来自 A 的第一个数据类型的数据类型签名初始化哈希值。
-<br/>
+  <br> <br/>
 - For each data type a from A, starting from the second, do the following:  
 - 对于每个来自 A 的数据类型 a，从第二个数据类型开始，执行以下操作：
-	<br/>
+  <br> <br/>
 	- Extend the current hash value with the data type signature of a.  
 	- 使用 a 的数据类型签名扩展当前哈希值。
 
@@ -647,10 +656,10 @@ Notes:
 
  - The reserved ID ranges listed in the Application level conventions.  
  - 在应用程序层列出保留未未使用的ID范围。
-<br/>
+  <br> <br/>
  - Message types and service types do not share the same set of possible data ID values (i.e., a message type and a service type can share the same data type ID with no conflict). You can learn more about this in the CAN bus transport layer specification.  
  - 消息类型和服务类型独立计算自己的数据 ID （即，一个消息类型和服务类型可以共享相同的数据类型ID，且不存在冲突)。您可以在 CAN 总线传输层规范中了解更多相关信息。
-<br/>
+  <br> <br/>
  - Changing ID does not affect data type compatibility.  
  - 更改ID不会影响数据类型兼容性。
 
@@ -725,7 +734,7 @@ The transport layer provides a data length for every received data transfer (wit
 
  - The minimum bit length of an item type is not less than 8 bits - because the transport layer reports the transfer length with an 8-bit resolution.  
  - 项目类型的最小位长不小于8位——因为传输层以 8 bit 为最小传输长度单位发送报告。
- <br/>
+  <br> <br/>
  
  - The array is the last field in the top-level data structure - because, otherwise, a much more complicated logic would be required to derive the length.  
  - 数组是顶层数据结构中的最后一个字段——因为，不然的话，派生长度将需要更复杂的逻辑。
@@ -798,7 +807,7 @@ Unions are encoded as two subsequent entities:
 
 - The union tag;  
 - 联合体标签；
-<br/>
+  <br> <br/>
 - The selected field.  
 - 选择的字段。
 
@@ -858,9 +867,8 @@ For the purpose of example, the following data will be encoded according to the 
 
 The resulting byte sequence is shown on the following diagram:  
 得到的字节序列如下图所示：
-<br/>
-<div align=center>![Alt text](./picture/1581253916886.png)
-<br/>
+
+[Alt text](./picture/1581253916886.png)
 
 We recommend you review the existing implementations.  
 建议回顾一下现有的实现。
