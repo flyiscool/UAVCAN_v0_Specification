@@ -232,7 +232,6 @@ Cast mode defines the rules of conversion from the native value of a certain pro
 
 - __saturated__ - This is the default cast mode, which will be used if the attribute definition does not specify the cast mode explicitly. For integers, it prevents an integer overflow - for example, attempting to write 0x44 to a 4-bit field will result in a bitfield value of 0x0F. For floating point values, it prevents overflow when casting to a lower precision floating point representation - for example, 65536.0 will be converted to a float16 as 65504.0; infinity will be preserved.  
 - __饱和处理__ —— 这是默认的转换模式，如果属性定义没有显式地指定转换模式，就会使用这种模式。对于整数，它可以防止整数溢出——例如，尝试将0x44写入4bit的字段将得到0x0F的位字段值。对于浮点值，它可以防止在将其转换为精度较低的浮点表示形式时发生溢出 —— 例如，将65536.0转换为 float16 (如65504.0) ; 不会产生无穷大。  
-
   <br> <br/>
 - __truncated__ - For integers, it discards the excess most significant bits - for example, attempting to write 0x44 to a 4-bit field will produce 0x04. For floating point values, overflow during downcasting will produce an infinity.  
 - __截断__ —— 对于整数它有可能丢弃重要的符号位，如将 0x44 写入 4bit的字段会得到0x04。对于浮点数，转换时有可能得到正无穷。  
