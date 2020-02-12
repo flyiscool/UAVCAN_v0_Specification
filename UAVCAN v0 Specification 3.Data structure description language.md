@@ -1,4 +1,4 @@
-## UAVCAN Specification 3.Data structure description language
+## UAVCAN v0 Specification 3.Data structure description language
 
 ## Contents
 ### Data structure description language
@@ -64,25 +64,21 @@ Notes:
  - It is not necessary to explicitly define a default data type ID for non-standard data types (i.e., for vendor-specific or application-specific data types).  
  - 没必要为非标准数据类型明确定义一个默认数据类型 ID （比如，适用于特定于供应商或特定于应用程序的数据类型）。  
 	- If the default data type ID is not defined by the DSDL definition, it will need to be assigned by the application at run time.  
-	- 如果 DSDL 没有定义默认数据类型ID，则需要在运行时由应用程序分配它。
-	 <br> <br/>
+	- 如果 DSDL 没有定义默认数据类型ID，则需要在运行时由应用程序分配它。  
 	- All standard data types have default data type ID values defined.  
 	- 所有标准数据类型都定义了默认数据类型ID值。  
  - Data type names are case sensitive, i.e., names foo.Bar and foo.bar are considered different. Names that differ only in case should be avoided, because it may cause problems on file systems that are not case-sensitive.  
  - 数据类型名称区分大小写，比如 foo.Bar 和 foo.bar 被认为是不同的。应该避免仅在大小写情况下不同的名称，因为它可能会在不区分大小写的文件系统上造成问题。
  - Data types may contain nested data structures.  
- - 数据类型可能包含嵌套的数据结构。
-  <br> <br/>
+ - 数据类型可能包含嵌套的数据结构。  
  	- Some data structures may be designed for such nesting only, in which case they are not required to have a dedicated data type ID.  
 	- 有些数据结构可能只设计用于这种嵌套，在这种情况下，它们不需要专用的数据类型ID。  
  - Full data type name is a unique identifier of a data type constructed from the root namespace, all nested namespaces (if any), and the data type name itself, joined via the dot symbol (.), e.g., uavcan.protocol.file.Read.  
  - 完整数据类型名称是数据类型的唯一标识符，该数据类型由根命名空间、所有嵌套命名空间（如果有的话）和数据类型名称本身构成，通过点符号（.）连接，例如，uavcan.protocol.file.Read。  
 	 - The length of the Full data type name must not exceed 80 characters.  
-	 - 完整数据类型名称的长度不能超过80个字符。  
-	  <br> <br/>
+	 - 完整数据类型名称的长度不能超过80个字符。
 	 - Refer to the naming rules below for the limitations imposed on the character set.  
 	 - 有关字符集的限制，请参阅下面的命名规则。
-	  <br> <br/>
 	 
 #### Service data structure (服务数据结构)
 Since a service invocation consists of two network exchange operations, the DSDL definition for a service must define two structures:  
@@ -148,7 +144,7 @@ A DSDL definition for a service data type may contain only the following:
 DSDL定义的服务数据类型只能包含以下内容:
 
  - Request part attribute definitions (zero or more)  
--请求阶段的属性定义（0个或更多）
+ - 请求阶段的属性定义（0个或更多）
   <br> <br/>
  - Response part attribute definitions (zero or more)  
  - 响应阶段的属性定义（0个或更多）
@@ -188,12 +184,10 @@ A primitive data type can be referred simply by name, e.g., float16, bool.
 原始数据类型可以简单的通过名称使用，比如：float16，bool。
 
 A nested data structure can be referred by either of these two:  
-一个嵌套的数据结构可以通过以下两种方式之一进行引用:
-
- - Short name, e.g., NodeStatus, if both the referred and the referring data types are located in the same namespace. For example, it is possible to access ns1.ns2.Type1 from ns1.ns2.Type2 using a short name, but not from ns1.ns2.ns3.Type3 or ns1.ns4.Type4.  
- - 短名称引用，所引用的数据类型位于同一命名空间时可以使用，例如 NodeStatus。可以在 ns1.ns2.Type2 时访问 ns1.ns2.Type1，但不能访问 ns1.ns2.ns3.Type3 或者 ns1.ns4.Type4。
- 
- - Full name, e.g., uavcan.protocol.NodeStatus. A full name allows access to the data type from any namespace.  
+一个嵌套的数据结构可以通过以下两种方式之一进行引用:  
+ - Short name, e.g., NodeStatus, if both the referred and the referring data types are located in the same namespace. For example, it is possible to access ns1.ns2.Type1 from ns1.ns2.Type2 using a short name, but not from ns1.ns2.ns3.Type3 or ns1.ns4.Type4.
+ - 短名称引用，所引用的数据类型位于同一命名空间时可以使用，例如 NodeStatus。可以在 ns1.ns2.Type2 时访问 ns1.ns2.Type1，但不能访问 ns1.ns2.ns3.Type3 或者 ns1.ns4.Type4。  
+ - Full name, e.g., uavcan.protocol.NodeStatus. A full name allows access to the data type from any namespace.
  - 全称，例如，uavcan.protocol.NodeStatus。全名允许从任何命名空间访问数据类型。
 
 A field type name can be appended with a statement in square brackets to define an array:  
@@ -224,9 +218,8 @@ For a service data type, all attributes must have a unique name within the same 
 #### Cast mode （强转模式）
 Cast mode defines the rules of conversion from the native value of a certain programming language to the serialized field value. Cast mode may be left undefined, in which case the default will be used. Possible cast modes are defined below.  
 强制转换模式定义了从某种编程语言的原生值到序列化字段值的转换规则。强制转换模式可以处于未定义状态，在这种情况下将使用默认模式。可能的转换模式定义如下。
-
 - __saturated__ - This is the default cast mode, which will be used if the attribute definition does not specify the cast mode explicitly. For integers, it prevents an integer overflow - for example, attempting to write 0x44 to a 4-bit field will result in a bitfield value of 0x0F. For floating point values, it prevents overflow when casting to a lower precision floating point representation - for example, 65536.0 will be converted to a float16 as 65504.0; infinity will be preserved.  
-- __饱和处理__ —— 这是默认的转换模式，如果属性定义没有显式地指定转换模式，就会使用这种模式。对于整数，它可以防止整数溢出——例如，尝试将0x44写入4bit的字段将得到0x0F的位字段值。对于浮点值，它可以防止在将其转换为精度较低的浮点表示形式时发生溢出 —— 例如，将65536.0转换为 float16 (如65504.0) ; 不会产生无穷大。  
+- __饱和处理__ —— 这是默认的转换模式，如果属性定义没有显式地指定转换模式，就会使用这种模式。对于整数，它可以防止整数溢出——例如，尝试将0x44写入4bit的字段将得到0x0F的位字段值。对于浮点值，它可以防止在将其转换为精度较低的浮点表示形式时发生溢出 —— 例如，将65536.0转换为 float16 (如65504.0) ; 不会产生无穷大。
 <br> <br/>  
 - __truncated__ - For integers, it discards the excess most significant bits - for example, attempting to write 0x44 to a 4-bit field will produce 0x04. For floating point values, overflow during downcasting will produce an infinity.  
 - __截断__ —— 对于整数它有可能丢弃重要的符号位，如将 0x44 写入 4bit的字段会得到0x04。对于浮点数，转换时有可能得到正无穷。  
@@ -347,7 +340,6 @@ The following rules are recommended only (DSDL compilers are not required to enf
  - Constant names should be all-uppercase words separated with underscores, and may include numbers (e.g.: CONSTANT_NAME).  
  - 常量名称应该是全大写的单词，用下划线分隔，可以包括数字（例如：CONSTANT_NAME）。
   <br> <br/>
-
  - Data type names should be in camel case (first letter of all words in uppercase) and may include numbers (e.g.: TypeName, TypeName2).  
  - 数据类型名称应该是驼峰式的（所有单词的首字母是大写的），并且可以包含数字（例如：TypeName, TypeName2）。
 
@@ -357,8 +349,10 @@ The following rules should be considered by the application designer, but should
 
  - Message names should be nouns or adjectives; service names should be verbs.  
  - 信息名称应是名词或形容词；服务名称应该是动词。
+  <br> <br/>
  - The name of a message that carries a command should end with the word “Command”; the name of a message that carries state information should end with the word “Status”.  
  - 载有命令的讯息的名称应以“Command”字结尾；带有状态信息的消息的名称应该以“Status”结尾。
+  <br> <br/>
  - The name of a service that is designed to obtain or to store data should begin with the word “Get” or “Set”, respectively.  
  - 用于获取或存储数据的服务的名称应分别以“Get”或“Set”开头。
 
@@ -469,34 +463,27 @@ Some traits of a data type are important to ensure compatibility and some are no
 To obtain a normalized definition of a given data type, the following actions must be performed on its definition:  
 要获得一个给定的数据类型的正则化定义，必须对其定义执行以下操作：
 
- - Remove comments.  
+ - Remove comments.
  - 删除注释。 
   <br> <br/>
-  
  - Remove all constant definitions.  
  - 删除所有的常量定义。
   <br> <br/>
- 
  - Ensure that all cast specifiers are explicitly defined; if not, add default cast specifiers.  
  - 确保所有的强制类型转换被明确定义；如果没有，添加默认的的强制类型转换说明符。
   <br> <br/>
-   
  - For dynamic arrays, replace the max length specifier in the form [<X] to the form [<=Y].  
  - 对于动态数组，将表单中的最大长度说明符从[<X]替换为[<=Y]。
   <br> <br/>
-   
  - For nested data structures, replace all short names with full names.  
  - 对于嵌套数据结构，将所有短名称替换为全名称。
   <br> <br/>
-   
  - Remove unimportant whitespace (empty lines, leading whitespace, trailing whitespace, more than  one whitespace between tokens).  
  - 删除不重要的空白（空行、前导空白、后置空白、标记之间的多个空白）。
   <br> <br/>
-   
  - Prepend the DSDL definition with the full data type name on a separate line.  
  - 预先将 DSDL 定义用完整的数据类型名称放在独丽的一行中。
   <br> <br/>
-   
  - Replace newline characters with the ASCII line-feed character (code: 0x0A; escape sequence: \n).  
  - 换行符使用ASCII换行字符（代码：0x0A；转义序列：\n）。
   <br> <br/>
@@ -862,7 +849,7 @@ For the purpose of example, the following data will be encoded according to the 
 The resulting byte sequence is shown on the following diagram:  
 得到的字节序列如下图所示：
 
-[Alt text](./picture/1581253916886.png)
+![Alt text](./picture/bit_encoding.png)
 
 We recommend you review the existing implementations.  
 建议回顾一下现有的实现。
