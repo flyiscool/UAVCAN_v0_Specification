@@ -9,26 +9,26 @@
 ------------------------
 
 ## Introduction（ 简介）
-This section covers the basic concepts that govern development and maintenance of the specification.
+This section covers the basic concepts that govern development and maintenance of the specification.  
 本节介绍了在开发和维护中规范说明的一些基本概念。
 
-The actual specification is contained in the following sections.
+The actual specification is contained in the following sections.  
 实际的规范说明在后续章节中。
 
-The reader should have a solid understanding of the main concepts and operating principles of the CAN bus.
+The reader should have a solid understanding of the main concepts and operating principles of the CAN bus.  
 读者在阅读之前应该对 CAN 总线的主要概念和工作原理有个扎实的理解。
 
 
 
 ### Core design goals（核心设计目标）
-The core design goals listed below help explain the basic UAVCAN concepts and the motivation behind them.
+The core design goals listed below help explain the basic UAVCAN concepts and the motivation behind them.  
 下面列出了核心设计目标帮助解释 UAVCAN 的基本概念和背后的动机。
 
- - __Democratic network__ - There should be no master node. All nodes in the network should have the same communication rights so that there is no single point of failure.
+ - __Democratic network__ - There should be no master node. All nodes in the network should have the same communication rights so that there is no single point of failure.  
  - __去中心化网络__ - 网络中没有主节点。所有的节点享有同样的通信权限避免出现单个节点引起的通信失败。
  <br>
  
- - __Nodes can exchange long payloads__ - Nodes must be provided with a simple way to exchange large data structures that cannot fit into a single CAN frame (such as GNSS solutions, 3D vectors, etc.). UAVCAN should perform automatic transfer decomposition and reassembly at the protocol level, hiding the related complexity from the application.
+ - __Nodes can exchange long payloads__ - Nodes must be provided with a simple way to exchange large data structures that cannot fit into a single CAN frame (such as GNSS solutions, 3D vectors, etc.). UAVCAN should perform automatic transfer decomposition and reassembly at the protocol level, hiding the related complexity from the application.  
  - __节点间可以互传长载荷__ -  对于超过一个 CAN 帧长度的大型数据结构（如 GNSS 解决方案，3D 向量等），节点必须提供一个简单的方式来进行互传。UAVCAN 应该在协议层封装完成对大数据结构的传输分解和重组过程，以此避免应用程序出现相关的复杂操作。
 <br>
 
@@ -53,12 +53,10 @@ The core design goals listed below help explain the basic UAVCAN concepts and th
 <br>
 
 ### Specification update and approval process（规范的更新和审批流程）
-The UAVCAN development team is charged with advancing the specification based on input from adopters. This feedback is gathered via the mailing list, which is open to everyone.
-
+The UAVCAN development team is charged with advancing the specification based on input from adopters. This feedback is gathered via the mailing list, which is open to everyone.  
 UAVCAN 的开发团队负责根据使用者的输入来推进规范。反馈通过邮件列表收集，邮件列表对所有人开放。
 
-The set of standard data definitions is one of the cornerstone concepts of the specification (see data structure description language (DSDL)). Within the same major version, the specification can be extended only in the following ways:
-
+The set of standard data definitions is one of the cornerstone concepts of the specification (see data structure description language (DSDL)). Within the same major version, the specification can be extended only in the following ways:  
 标准数据集的定义是规范的基础概念之一（请参考数据结构描述语言（DSDL）)。在同一个主版本内，规范只能以一下方式新型扩展：
 
  - A new data type can be added, possibly with default data type ID, as long as the default data type ID doesn’t conflict with one of the existing data types.
@@ -81,7 +79,7 @@ The set of standard data definitions is one of the cornerstone concepts of the s
   - 弃用将通过邮件列表的形式宣布，并在DSDL的定义中以注释的形式表示。
   <br/>
  
-Link to the repository containing the set of default DSDL definitions can be found on the contacts page.
+Link to the repository containing the set of default DSDL definitions can be found on the contacts page.  
 可以在联系人页面上找到包含缺省 DSDL 定义集的存储库链接。
 
 
