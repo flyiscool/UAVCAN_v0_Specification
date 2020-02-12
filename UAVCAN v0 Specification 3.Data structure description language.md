@@ -63,25 +63,20 @@ Notes:
 备注：
  - It is not necessary to explicitly define a default data type ID for non-standard data types (i.e., for vendor-specific or application-specific data types).  
  - 没必要为非标准数据类型明确定义一个默认数据类型 ID （比如，适用于特定于供应商或特定于应用程序的数据类型）。  
-  <br> <br/>
 	- If the default data type ID is not defined by the DSDL definition, it will need to be assigned by the application at run time.  
 	- 如果 DSDL 没有定义默认数据类型ID，则需要在运行时由应用程序分配它。
 	 <br> <br/>
 	- All standard data types have default data type ID values defined.  
 	- 所有标准数据类型都定义了默认数据类型ID值。  
-	 <br> <br/>
  - Data type names are case sensitive, i.e., names foo.Bar and foo.bar are considered different. Names that differ only in case should be avoided, because it may cause problems on file systems that are not case-sensitive.  
  - 数据类型名称区分大小写，比如 foo.Bar 和 foo.bar 被认为是不同的。应该避免仅在大小写情况下不同的名称，因为它可能会在不区分大小写的文件系统上造成问题。
-  <br> <br/>
  - Data types may contain nested data structures.  
  - 数据类型可能包含嵌套的数据结构。
   <br> <br/>
  	- Some data structures may be designed for such nesting only, in which case they are not required to have a dedicated data type ID.  
 	- 有些数据结构可能只设计用于这种嵌套，在这种情况下，它们不需要专用的数据类型ID。  
-	 <br> <br/>
  - Full data type name is a unique identifier of a data type constructed from the root namespace, all nested namespaces (if any), and the data type name itself, joined via the dot symbol (.), e.g., uavcan.protocol.file.Read.  
  - 完整数据类型名称是数据类型的唯一标识符，该数据类型由根命名空间、所有嵌套命名空间（如果有的话）和数据类型名称本身构成，通过点符号（.）连接，例如，uavcan.protocol.file.Read。  
-  <br> <br/>
 	 - The length of the Full data type name must not exceed 80 characters.  
 	 - 完整数据类型名称的长度不能超过80个字符。  
 	  <br> <br/>
@@ -232,7 +227,7 @@ Cast mode defines the rules of conversion from the native value of a certain pro
 
 - __saturated__ - This is the default cast mode, which will be used if the attribute definition does not specify the cast mode explicitly. For integers, it prevents an integer overflow - for example, attempting to write 0x44 to a 4-bit field will result in a bitfield value of 0x0F. For floating point values, it prevents overflow when casting to a lower precision floating point representation - for example, 65536.0 will be converted to a float16 as 65504.0; infinity will be preserved.  
 - __饱和处理__ —— 这是默认的转换模式，如果属性定义没有显式地指定转换模式，就会使用这种模式。对于整数，它可以防止整数溢出——例如，尝试将0x44写入4bit的字段将得到0x0F的位字段值。对于浮点值，它可以防止在将其转换为精度较低的浮点表示形式时发生溢出 —— 例如，将65536.0转换为 float16 (如65504.0) ; 不会产生无穷大。  
-  <br> <br/>
+<br> <br/>  
 - __truncated__ - For integers, it discards the excess most significant bits - for example, attempting to write 0x44 to a 4-bit field will produce 0x04. For floating point values, overflow during downcasting will produce an infinity.  
 - __截断__ —— 对于整数它有可能丢弃重要的符号位，如将 0x44 写入 4bit的字段会得到0x04。对于浮点数，转换时有可能得到正无穷。  
 
